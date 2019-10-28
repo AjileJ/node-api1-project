@@ -48,6 +48,7 @@ const id = req.params.id;
 db.findById(id)
 .then(user => {
   console.log('user', user);
+  res.send(user)
   if(!user) {
     res.status(404).json({error: 'The user with the specific ID does not exist.'})
   }
@@ -59,19 +60,26 @@ db.findById(id)
 })
 ///delete
 server.delete('/api/users/:id' , (req, res) => {
-const id = req.params;
-db.findById(id)
-.then(deleted => {
-  console.log(deleted);
-  if(!user){
-    res.status(404).json({error: 'The user withe the specific ID does not exist.'})
-  }
+const id = req.params.id;
+db.remove(id)
+.then(() => {
+  res.status(201).json({success: `The user with the specific ID ${id} was deleted`})
 })
 .catch(err => {
   console.log(err);
   res.status(500).json({error: 'The user could not be removed'})
 })
 })
+/* 
+db.remove(id)
+   .then(count => {
+     res.status(200).json({ message: hubs with id ${id} deleted });
+   })
+   .catch(err => {
+     console.log('error', err);
+     res.status(500).json({ error: 'failed to delete the hub from the db' });
+   });
+*/
 ///put
 server.put('/api/users/:id', (req,res) => {
 const id = req.params.id;
