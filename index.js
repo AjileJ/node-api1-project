@@ -74,16 +74,7 @@ db.remove(id)
   res.status(500).json({error: 'The user could not be removed'})
 })
 })
-/* 
-db.remove(id)
-   .then(count => {
-     res.status(200).json({ message: hubs with id ${id} deleted });
-   })
-   .catch(err => {
-     console.log('error', err);
-     res.status(500).json({ error: 'failed to delete the hub from the db' });
-   });
-*/
+
 ///put
 server.put('/api/users/:id', (req,res) => {
 const id = req.params.id;
