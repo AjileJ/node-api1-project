@@ -1,6 +1,6 @@
 // implement your API here
 const express = require('express');
-require('dotenv').config();
+// require('dotenv').config();
 const db = require('./data/db.js');
 
 const server = express();
